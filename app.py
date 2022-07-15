@@ -1,6 +1,6 @@
 # Импорт необходимых функций и классов
 
-from flask import Flask
+from flask import Flask, request, render_template
 import utils
 
 # Создание приложения Flask с необходимыми представлениями
@@ -14,7 +14,7 @@ def main_page():
     Создает главную страницу
     :return: информация о всех кандидатах
     """
-    return utils.get_all()
+    return render_template('list.html', candidates_list=utils.load_candidates_from_json)
 
 
 @app.route("/candidate/<int:pk>")
@@ -24,9 +24,8 @@ def candidate_page(pk):
     :param pk: номер кандидата
     :return: информация о данном кандидате
     """
-    picture_url, candidate_info = utils.get_by_pk(pk)
-    return f'<img src="({picture_url})">' \
-           f'{candidate_info}'
+
+    pass
 
 
 @app.route("/skills/<skill_name>")
@@ -36,7 +35,7 @@ def skill_page(skill_name):
     :param skill_name: название навыка
     :return: информация о всех кандидатах, обладающих данным навыком
     """
-    return utils.get_by_skill(skill_name)
+    pass
 
 
 if __name__ == "__main__":
