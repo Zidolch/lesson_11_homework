@@ -53,6 +53,6 @@ def get_by_name(name, candidates_list=load_candidates_from_json()):
     """
     named_candidates_list = []
     for candidate in candidates_list:
-        if name.lower() in candidate["skills"].lower():
+        if name.lower() in candidate["name"].lower():
             named_candidates_list.append(candidate)
     return named_candidates_list
